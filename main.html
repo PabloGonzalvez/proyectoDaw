@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Pagina proyecto de blog" />
+    <meta name="author" content="Pablo" />
+    <title>Blog Gamer</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="assets/iconos/bootstrap-icons.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <script src="bootstrap/js/bootstrap.bundle.js"></script>
+    
+
+</head>
+
+<body>
+    
+    <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="postModalLabel"></h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <select class="form-select" id="post_categoria">
+                            <option value="0" selected>Categoría</option>
+                          </select>
+                      
+                    </div>
+                    <div class="mb-3">
+                        <textarea class="form-control" id="post_text" rows="3" maxlength="255"  ></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <input class="form-control" type="file" id="post_file">
+                    </div>
+                    
+                  </form>
+                  <span id="post_error"></span>
+             
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="publicar" class="btn btn-secondary">Publicar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+    <!-- perfil de usuario -->
+    <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                   
+                    <div class="modal-header text-center">
+                        
+                        <div class="ms-auto  w-100 text-center"  >
+                            <div class="w-100 text-end">
+                                <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"> </button>
+
+                            </div>
+                            
+                            <img id="userprofile_image" class="rounded-circle" width="80"  alt="">
+                            <h4 id="userprofile_id" ></h4>
+                            <span id="userprofile_name" ></span>
+                        </div>
+                        
+                        
+                    </div>
+                    <!-- Tabs de la ventana modal-->
+                    <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="ex3-tab-1" data-bs-toggle="tab" href="#tab_perfil" role="tab" aria-controls="tab_perfil" aria-selected="true">Perfil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="ex3-tab-2" data-bs-toggle="tab" href="#tab_modificar" role="tab" aria-controls="tab_modificar" aria-selected="false">Modificar</a>
+                        </li>
+
+                    </ul>
+                    <div class="tab-content" id="ex2-content">
+                        <!-- Contenido del tab 1 (formulario de iniciar sesion)-->
+                        <div class="tab-pane fade show active" id="tab_perfil" role="tabpanel" aria-labelledby="ex3-tab-1">
+                            <div class="justify-content-center">
+                                <div class="align-self-center">
+                                    <div class="d-flex flex-column px-4">
+                                        <h4>Biografia</h4>   
+                                        <p id="userprofile_bio" disabled ></p>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mt-4 px-4">
+
+                                        <div class="stats">
+                                          <h6 class="mb-0">Seguidores</h6>
+                                          <span>8,797</span>
+                               
+                                        </div>
+                               
+                               
+                                        <div class="stats">
+                                          <h6 class="mb-0">Post</h6>
+                                          <span>1420</span>
+                               
+                                        </div>
+                               
+                               
+                                        <div class="stats">
+                                          <h6 class="mb-0">Amigos</h6>
+                                          <span>129</span>
+                               
+                                        </div>
+                                        
+                                      </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- Contenido del tab 2 (formulario de registro)-->
+                        <div class="tab-pane fade" id="tab_modificar" role="tabpanel" aria-labelledby="ex3-tab-2">
+                            <div class="justify-content-center">
+                                <div class="align-self-center">
+                                    <form id="form_registro" class="mx-5 my-3" novalidate="novalidate">
+                                        <div class="container-fluid">
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-unstyled">
+                                                    <div class="form-group my-3">
+                                                        <label for="mod_name" class="mb-2">Usuario</label>
+                                                        <div class="input-group">
+                                                            
+                                                            <input type="text" value="" title="Letras o números de 6 a 15 caracteres no especiales" id="mod_name" name="mod_name" class="form-control" placeholder="Nombre" />
+
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="form-group my-3">
+                                                        <label for="mod_bio" class="mb-2">Biografia</label>
+                                                        <div class="input-group">
+                                                            
+                                                            <textarea type="email" value="" id="mod_bio" name="mod_bio" class="form-control" placeholder="Biografia"></textarea>
+
+                                                        </div>
+                                                        <div class="text-center">
+                                                            <span id="email_registro_error" class="text-danger"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group my-3">
+                                                        <label for="registro_password" class="mb-2">Imagen</label>
+                                                        <div class="input-group">
+                                                            
+                                                            <input class="form-control" type="file" id="mod_file">
+
+                                                        </div>
+                                                        
+                                                    </div>
+                
+                                                </li>
+                                                <li class="list-group-item text-center">
+                                                    <button id="modificar_perfil" type="button" class="btn btn-secondary boton">Guardar</button>
+                                                    <a id="confirmacion" data-bs-toggle="modal" data-bs-dismiss="modal" href="#myModal2" class="d-none"></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Footer de la modal y login con redes sociales-->
+                    <div class="modal-footer d-flex flex-column text-center border-0">
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- Cabecera-->
+    <header class="fixed-top">
+        <!-- Barra de navegacion-->
+        <nav class="navbar  navbar-dark bg-dark navbar-expand-lg">
+            <div class="container-fluid mx-3">
+                <a href="index.html" class="navbar-brand titulo">YouPost</a>
+                <button type="button" class="navbar-toggler shadow-none" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav">
+                        <a href="#" class="nav-item nav-link active">Inicio</a>
+                        
+
+                    </div> 
+                    <div class="d-lg-flex justify-content-end">
+                        <form class="d-flex">
+                            <div id="divBusqueda" class="input-group me-4">
+                                <input id="inputBusqueda" type="text" class="form-control" placeholder="Buscar">
+                                <button type="button" class="btn btn-secondary shadow-none"><i 
+                                        class="bi-search"></i></button>
+                            </div>
+                        </form>
+                        <div id="login_signup" class="navbar-nav">
+                            <button class="btn btn-secondary  shadow-none" data-bs-toggle="modal" data-bs-target="#modalLoginForm"><span>Iniciar Sesión</span></button>
+                        </div>
+                        <div id="divUserData" class=" d-none dropdown user_data">
+                            <button class="btn btn-secondary dropdown-toggle shadow-none" type="button" id="user_data_button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="bi bi-person-circle"></i>
+                                <span id="username"></span>
+                                <i class="bi bi-gear"></i>
+                            </button>
+
+                            <div class="dropdown-menu" aria-labelledby="user_data_button">
+                                <button id="profile_see" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#profileModal" >Perfil</button>
+                                <a class="dropdown-item" href="#">Mis post</a>
+                                <button id="logout" class="dropdown-item">Cerrar Sesión</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- <div class="alert alert-primary alert-dismissible d-flex align-items-center fade show  fixed-bottom" role="alert">
+
+        <div>
+            Las cookies de este sitio web se usan para personalizar el contenido y los anuncios, ofrecer funciones de redes sociales y analizar el tráfico. Además, compartimos información sobre el uso que haga del sitio web con nuestros partners de redes sociales,
+            publicidad y análisis web, quienes pueden combinarla con otra información que les haya proporcionado o que hayan recopilado a partir del uso que haya hecho de sus servicios.
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div> -->
+
+    <div class="container mt-5">
+        <section class="row">
+            <div class="col-md-2 gedf-wrapper d-flex flex-wrap justify-content-end border-end">
+                <div class="position-fixed">
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2">
+                            <button class="btn"><i class="bi bi-house-fill"></i>   Inicio</button>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <button class="btn"><i class="bi bi-hash"></i>   Explora</button>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <button class="btn"><i class="bi bi-bell-fill"></i>   Notificaciones</button>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <button class="btn"><i class="bi bi-envelope-fill"></i>   Mensajes</button>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <button id="ver_favoritos" class="btn"><i class="bi bi-star-fill"></i>   Favoritos</button>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <button id="ver_likes" class="btn"><i class="bi bi-heart-fill"></i>   Likes</button>
+                        </li>
+                    </ul>
+                    <div>
+                        <button id="post" class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#postModal" >Post</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            
+
+            <div id="contenido_post" class="col-md-6 gedf-main gedf-wrapper">
+                <!--- \\\\\\\Post-->
+                <!-- <div class="card gedf-card">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="mr-2">
+                                    <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                                </div>
+                                <div class="ml-2">
+                                    <div class="h5 m-0">@LeeCross</div>
+                                    <div class="h7 text-muted">Miracles Lee Cross</div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="dropdown">
+                                    <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="bi bi-three-dots"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+                                        <a class="dropdown-item" href="#">Ocultar</a>
+                                        <a class="dropdown-item" href="#">Denunciar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+
+                        <div class="text-muted h7 mb-2"> <i class="bi bi bi-calendar2-week-fill"></i> 10 min ago</div>
+
+
+                        <p class="card-text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo recusandae nulla rem eos ipsa praesentium esse magnam nemo dolor sequi fuga quia quaerat cum, obcaecati hic, molestias minima iste voluptates.
+                        </p>
+                        <div class="ratio ratio-16x9">
+                            <iframe src="assets/img/lol.webm" allowfullscreen></iframe>
+
+                        </div>
+                        <div class="mt-2">
+                            <span class="badge badge-primary">Videojuegos</span>
+
+                        </div>
+
+
+                    </div>
+                    <div class="card-footer d-flex justify-content-around">
+                        <div>
+                            <button class="card-link btn"><i class="bi bi-heart-fill"></i></button><span>Like</span>
+                        </div>
+                        <div>
+                            <button class="card-link btn"><i class="bi bi-chat-fill"></i></button><span>Comentar</span>
+                        </div>
+                        <div>
+                            <button class="card-link btn"><i class="bi bi-star-fill"></i></button><span>Fav</span>
+                        </div>
+                        <div>
+                            <button class="card-link btn"><i class="bi bi-share-fill"></i></button><span>Compartir</span>
+                        </div>
+                    </div>
+                </div> -->
+
+
+
+
+
+
+            </div>
+            <div class="col-md-4 border-start gedf-wrapper d-flex flex-column align-items-center">
+                <div class="position-fixed  justify-content-center">
+
+                    <div class="card-header trend-header d-flex align-items-center justify-content-center">
+                        <h2 class="h4">Tendencias</h2>
+
+                    </div>
+                    <div class="card-body no-padding trend">
+
+                        <div class="text mb-2">
+                            <div class="d-flex justify-content-between align-items-end">
+                                <h5>Mundial</h5>
+                                <div class="dropdown user_data">
+                                    <button class="btn dropdown-toggle shadow-none trend_buton" type="button" id="user_data_button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="bi bi-three-dots"></i>
+                                        </button>
+
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Me interesa</a>
+                                        <a class="dropdown-item" href="#">No me interesa</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <small>34570 post</small>
+                        </div>
+
+
+                    </div>
+
+                    <div class="card-body no-padding trend">
+                        <div class="text mb-2">
+                            <div class="d-flex justify-content-between align-items-end">
+                                <h5>Call of Duty Warzone 2</h5>
+                                <div class="dropdown user_data">
+                                    <button class="btn dropdown-toggle shadow-none trend_buton" type="button" id="user_data_button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="bi bi-three-dots"></i>
+                                        </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Me interesa</a>
+                                        <a class="dropdown-item" href="#">No me interesa</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <small>Tendencia en Videojuegos</small>
+                        </div>
+
+                    </div>
+
+                    <div class="card-body no-padding trend">
+                        <div class="text mb-2">
+                            <div class="d-flex justify-content-between align-items-end">
+                                <h5>Zara</h5>
+                                <div class="dropdown user_data">
+                                    <button class="btn dropdown-toggle shadow-none trend_buton" type="button" id="user_data_button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="bi bi-three-dots"></i>
+                                        </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Me interesa</a>
+                                        <a class="dropdown-item" href="#">No me interesa</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <small>Tendencia en Moda</small>
+                        </div>
+
+                    </div>
+
+                    <div class="card-body no-padding trend">
+                        <div class="text mb-2">
+                            <div class="d-flex justify-content-between align-items-end">
+                                <h5>Leo Messi</h5>
+                                <div class="dropdown user_data">
+                                    <button class="btn dropdown-toggle shadow-none trend_buton" type="button" id="user_data_button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="bi bi-three-dots"></i>
+                                        </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Me interesa</a>
+                                        <a class="dropdown-item" href="#">No me interesa</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <small>Tendencia en Argentina</small>
+                        </div>
+
+
+                    </div>
+
+                    <div class="card-body no-padding trend-footer trend">
+                        <div class="d-flex align-items-center">
+                            <a href="#">Mostrar mas</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+        </section>
+        </div>
+        <footer class="footer-bs bg-dark text-white p-4">
+            <div class="row">
+                <div class="col-md-3 footer-brand animated fadeInLeft text-center">
+                    <h2 class="titulo">YOUPOST</h2>
+                    <p>Somos una gran comunidad gamer en expansión. No dudes en unirte a nostros y disfrutar de todo el contenido que ponemos a tu disposición</p>
+                    <p>© 2022 YOUPOST, Todos los derechos reservados</p>
+                </div>
+               
+                
+            </div>
+        </footer>
+
+
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="js/main.js"></script>
+
+</html>

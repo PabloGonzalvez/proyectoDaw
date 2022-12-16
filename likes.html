@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Pagina proyecto de blog" />
+    <meta name="author" content="Pablo" />
+    <title>Blog Gamer</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="assets/iconos/bootstrap-icons.css" />
+    <link rel="stylesheet" href="css/likes.css" />
+    <script src="bootstrap/js/bootstrap.bundle.js"></script>
+    
+
+</head>
+
+<body>
+    
+    <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="postModalLabel"></h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <select class="form-select" id="post_categoria">
+                            <option value="0" selected>Categoría</option>
+                          </select>
+                      
+                    </div>
+                    <div class="mb-3">
+                        <textarea class="form-control" placeholder="Que esta pasando?" id="post_text" rows="3" maxlength="255"  ></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <input class="form-control" type="file" id="post_file">
+                    </div>
+                    
+                  </form>
+                  <span id="post_error"></span>
+             
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="publicar" class="btn btn-secondary">Publicar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+    <!-- Cabecera-->
+    <header class="fixed-top">
+        <!-- Barra de navegacion-->
+        <nav class="navbar  navbar-dark bg-dark navbar-expand-lg">
+            <div class="container-fluid mx-3">
+                <a href="index.html" class="navbar-brand titulo">GAMEBLOG</a>
+                <button type="button" class="navbar-toggler shadow-none" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav">
+                        <a href="#" class="nav-item nav-link active">Likes</a>
+                        <!-- <div class="d-none nav-item dropdown admin_data" id="admnistracion_tab">
+                            <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Administración</a>
+                            <div class="dropdown-menu">
+                                <a href="#" class="dropdown-item">Usuarios</a>
+                                <a href="#" class="dropdown-item">Post</a>
+                                <a href="#" class="dropdown-item">Imágenes</a>
+                            </div>
+                        </div>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Contenido</a>
+                            <div class="dropdown-menu">
+                                <a href="#" class="dropdown-item">Post</a>
+                                <a href="#" class="dropdown-item">Imágenes</a>
+                            </div>
+                        </div>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Información</a>
+                            <div class="dropdown-menu">
+                                <a href="contacto.html" class="dropdown-item">Contacto</a>
+                                <a href="#" class="dropdown-item">Nosotros</a>
+                                <a href="faq.html" class="dropdown-item">Faq</a>
+                            </div>
+                        </div>-->
+
+                    </div> 
+                    <div class="d-lg-flex justify-content-end">
+                        <form class="d-flex">
+                            <div id="divBusqueda" class="input-group me-4">
+                                <input id="inputBusqueda" type="text" class="form-control" placeholder="Buscar">
+                                <button type="button" class="btn btn-secondary shadow-none"><i 
+                                        class="bi-search"></i></button>
+                            </div>
+                        </form>
+                        <div id="login_signup" class="navbar-nav">
+                            <button class="btn btn-secondary  shadow-none" data-bs-toggle="modal" data-bs-target="#modalLoginForm"><span>Iniciar Sesión</span></button>
+                        </div>
+                        <div id="divUserData" class=" d-none dropdown user_data">
+                            <button class="btn btn-secondary dropdown-toggle shadow-none" type="button" id="user_data_button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="bi bi-person-circle"></i>
+                                <span id="username"></span>
+                                <i class="bi bi-gear"></i>
+                            </button>
+
+                            <div class="dropdown-menu" aria-labelledby="user_data_button">
+                                <a class="dropdown-item" href="perfil.html">Perfil</a>
+                                <a class="dropdown-item" href="#">Mis post</a>
+                                <button id="logout" class="dropdown-item">Cerrar Sesión</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- <div class="alert alert-primary alert-dismissible d-flex align-items-center fade show  fixed-bottom" role="alert">
+
+        <div>
+            Las cookies de este sitio web se usan para personalizar el contenido y los anuncios, ofrecer funciones de redes sociales y analizar el tráfico. Además, compartimos información sobre el uso que haga del sitio web con nuestros partners de redes sociales,
+            publicidad y análisis web, quienes pueden combinarla con otra información que les haya proporcionado o que hayan recopilado a partir del uso que haya hecho de sus servicios.
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div> -->
+
+    <div class="container mt-5">
+        <section class="row">
+            <div class="col-md-2 gedf-wrapper d-flex flex-wrap justify-content-end border-end">
+                <div class="position-fixed">
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2">
+                            <button class="btn"><i class="bi bi-house-fill"></i>   Inicio</button>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <button class="btn"><i class="bi bi-hash"></i>   Explora</button>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <button class="btn"><i class="bi bi-bell-fill"></i>   Notificaciones</button>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <button class="btn"><i class="bi bi-envelope-fill"></i>   Mensajes</button>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <button id="ver_favoritos" class="btn"><i class="bi bi-star-fill"></i>   Favoritos</button>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <button id="ver_likes" class="btn"><i class="bi bi-heart-fill"></i>   Likes</button>
+                        </li>
+                    </ul>
+                    <div>
+                        <button id="post" class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#postModal" >Post</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            
+
+            <div id="contenido_post" class="col-md-6 gedf-main gedf-wrapper">
+                <!--- \\\\\\\Post-->
+                <!-- <div class="card gedf-card">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="mr-2">
+                                    <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                                </div>
+                                <div class="ml-2">
+                                    <div class="h5 m-0">@LeeCross</div>
+                                    <div class="h7 text-muted">Miracles Lee Cross</div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="dropdown">
+                                    <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="bi bi-three-dots"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+                                        <a class="dropdown-item" href="#">Ocultar</a>
+                                        <a class="dropdown-item" href="#">Denunciar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+
+                        <div class="text-muted h7 mb-2"> <i class="bi bi bi-calendar2-week-fill"></i> 10 min ago</div>
+
+
+                        <p class="card-text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo recusandae nulla rem eos ipsa praesentium esse magnam nemo dolor sequi fuga quia quaerat cum, obcaecati hic, molestias minima iste voluptates.
+                        </p>
+                        <div class="ratio ratio-16x9">
+                            <iframe src="assets/img/lol.webm" allowfullscreen></iframe>
+
+                        </div>
+                        <div class="mt-2">
+                            <span class="badge badge-primary">Videojuegos</span>
+
+                        </div>
+
+
+                    </div>
+                    <div class="card-footer d-flex justify-content-around">
+                        <div>
+                            <button class="card-link btn"><i class="bi bi-heart-fill"></i></button><span>Like</span>
+                        </div>
+                        <div>
+                            <button class="card-link btn"><i class="bi bi-chat-fill"></i></button><span>Comentar</span>
+                        </div>
+                        <div>
+                            <button class="card-link btn"><i class="bi bi-star-fill"></i></button><span>Fav</span>
+                        </div>
+                        <div>
+                            <button class="card-link btn"><i class="bi bi-share-fill"></i></button><span>Compartir</span>
+                        </div>
+                    </div>
+                </div> -->
+
+
+
+
+
+
+            </div>
+            <div class="col-md-4 border-start gedf-wrapper d-flex flex-column align-items-center">
+                <div class="position-fixed  justify-content-center">
+
+                    <div class="card-header trend-header d-flex align-items-center justify-content-center">
+                        <h2 class="h4">Tendencias</h2>
+
+                    </div>
+                    <div class="card-body no-padding trend">
+
+                        <div class="text mb-2">
+                            <div class="d-flex justify-content-between align-items-end">
+                                <h5>Mundial</h5>
+                                <div class="dropdown user_data">
+                                    <button class="btn dropdown-toggle shadow-none trend_buton" type="button" id="user_data_button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="bi bi-three-dots"></i>
+                                        </button>
+
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Me interesa</a>
+                                        <a class="dropdown-item" href="#">No me interesa</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <small>34570 post</small>
+                        </div>
+
+
+                    </div>
+
+                    <div class="card-body no-padding trend">
+                        <div class="text mb-2">
+                            <div class="d-flex justify-content-between align-items-end">
+                                <h5>Call of Duty Warzone 2</h5>
+                                <div class="dropdown user_data">
+                                    <button class="btn dropdown-toggle shadow-none trend_buton" type="button" id="user_data_button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="bi bi-three-dots"></i>
+                                        </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Me interesa</a>
+                                        <a class="dropdown-item" href="#">No me interesa</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <small>Tendencia en Videojuegos</small>
+                        </div>
+
+                    </div>
+
+                    <div class="card-body no-padding trend">
+                        <div class="text mb-2">
+                            <div class="d-flex justify-content-between align-items-end">
+                                <h5>Zara</h5>
+                                <div class="dropdown user_data">
+                                    <button class="btn dropdown-toggle shadow-none trend_buton" type="button" id="user_data_button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="bi bi-three-dots"></i>
+                                        </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Me interesa</a>
+                                        <a class="dropdown-item" href="#">No me interesa</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <small>Tendencia en Moda</small>
+                        </div>
+
+                    </div>
+
+                    <div class="card-body no-padding trend">
+                        <div class="text mb-2">
+                            <div class="d-flex justify-content-between align-items-end">
+                                <h5>Leo Messi</h5>
+                                <div class="dropdown user_data">
+                                    <button class="btn dropdown-toggle shadow-none trend_buton" type="button" id="user_data_button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="bi bi-three-dots"></i>
+                                        </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Me interesa</a>
+                                        <a class="dropdown-item" href="#">No me interesa</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <small>Tendencia en Argentina</small>
+                        </div>
+
+
+                    </div>
+
+                    <div class="card-body no-padding trend-footer trend">
+                        <div class="d-flex align-items-center">
+                            <a href="#">Mostrar mas</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+        </section>
+        </div>
+        <footer class="footer-bs bg-dark text-white p-4">
+            <div class="row">
+                <div class="col-md-12 footer-brand animated fadeInLeft text-center">
+                    <h2 class="titulo">YOUPOST</h2>
+                    <p>Somos una gran comunidad en expansión. No dudes en unirte a nostros y disfrutar de todo el contenido que ponemos a tu disposición</p>
+                    <p>© 2022 YOUPOST, Todos los derechos reservados</p>
+                </div>
+                <!-- <div class="col-md-3 footer-nav animated fadeInUp">
+                    <h4>Categorías</h4>
+                    <div class="col-md-4">
+                        <ul class="">
+                            <li class="list-unstyled"><a class="nav-link" href="#">Rpg</a></li>
+                            <li class="list-unstyled"><a class="nav-link" href="#">Anime</a></li>
+                            <li class="list-unstyled"><a class="nav-link" href="#">Shooter</a></li>
+                            <li class="list-unstyled"><a class="nav-link" href="#">Magia</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 footer-social animated fadeInDown">
+                    <h4>Siguenos en</h4>
+                    <ul>
+                        <li class="list-unstyled"><a class="nav-item nav-link active" href="#"><i class="bi bi-facebook"></i></a></li>
+                        <li class="list-unstyled"><a class="nav-item nav-link active" href="#"><i class="bi bi-instagram"></i></a></li>
+                        <li class="list-unstyled"><a class="nav-item nav-link active" href="#"><i class="bi bi-twitter"></i></a></li>
+                        <li class="list-unstyled"><a class="nav-item nav-link active" href="#"><i class="bi bi-twitch"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 footer-ns animated fadeInRight">
+                    <h4>Notificaciones</h4>
+                    <p>Subscríbete para estar al tanto de los nuevos post y todas las demás novedades</p>
+                    <p>
+                        <div class="input-group">
+                            <input type="mail" class="form-control" placeholder="Correo">
+                            <span class="input-group-btn">
+                        <button class="btn btn-secondary shadow-none" type="button"><span class="bi bi-envelope"></span></button>
+                            </span>
+                        </div>
+                    </p>
+                </div> -->
+            </div>
+        </footer>
+
+
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="js/likes.js"></script>
+
+</html>

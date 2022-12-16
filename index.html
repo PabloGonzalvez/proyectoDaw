@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Pagina proyecto de blog" />
+    <meta name="author" content="Pablo" />
+    <title>YouPost</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="assets/iconos/bootstrap-icons.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <script src="bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="js/index.js"></script>
+
+</head>
+
+<body>
+    <!-- Cabecera-->
+    <header>
+
+        <!-- Ventana  de iniciar sesion-->
+        <div class="container" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header text-center bg-dark">
+                        <h4 class="modal-title w-100 font-weight-bold text-white titulo">YOUPOST</h4>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"> </button>
+                    </div>
+                    <!-- Tabs de la ventana -->
+                    <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="ex3-tab-1" data-bs-toggle="tab" href="#tab-login" role="tab" aria-controls="tab-login" aria-selected="true">Iniciar Sesión</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="ex3-tab-2" data-bs-toggle="tab" href="#tab-registro" role="tab" aria-controls="tab-registro" aria-selected="false">Registrarse</a>
+                        </li>
+
+                    </ul>
+                    <div class="tab-content" id="ex2-content">
+                        <!-- Contenido del tab 1 (formulario de iniciar sesion)-->
+                        <div class="tab-pane fade show active" id="tab-login" role="tabpanel" aria-labelledby="ex3-tab-1">
+                            <div class="justify-content-center">
+                                <div class="align-self-center">
+                                    <form id="form_login" class="mx-5 my-3" novalidate="novalidate">
+                                        <div class="container-fluid">
+                                            <ul class="list-group list-group-flush">
+
+                                                <li class="list-unstyled">
+                                                    <div class="form-group my-3">
+                                                        <label for="login_user" class="mb-2">Usuario</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-text custom_blue_background">
+                                                                <i class="bi bi-person-fill"></i>
+                                                            </span>
+                                                            <input type="text" id="login_user" name="login_user" class="form-control" placeholder="Usuario" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group my-3">
+                                                        <label for="login_password" class="mb-2">Contraseña</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-text custom_blue_background">
+                                                                <i class="bi bi-unlock-fill"></i>
+                                                            </span>
+                                                            <input type="password" id="login_password" name="login_password" class="form-control" placeholder="Contraseña" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group text-center">
+                                                        <span id="login_error" class="text-danger">
+                                                        </span>
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item text-center">
+                                                    <button type="button" id="login_button" class="btn btn-secondary">Iniciar
+                                                        Sesión</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- Contenido del tab 2 (formulario de registro)-->
+                        <div class="tab-pane fade" id="tab-registro" role="tabpanel" aria-labelledby="ex3-tab-2">
+                            <div class="justify-content-center">
+                                <div class="align-self-center">
+                                    <form id="form_registro" class="mx-5 my-3" novalidate="novalidate">
+                                        <div class="container-fluid">
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-unstyled">
+                                                    <div class="form-group my-3">
+                                                        <label for="registro_user" class="mb-2">Usuario</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-text custom_blue_background">
+                                                                <i class="bi bi-person-fill"></i>
+                                                            </span>
+                                                            <input type="text" value="" title="Letras o números de 6 a 15 caracteres no especiales" id="registro_user" name="registro_user" class="form-control" placeholder="Usuario" />
+
+                                                        </div>
+                                                        <div class="text-center">
+                                                            <span id="user_registro_error" class="text-danger"></span>
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div class="form-group my-3">
+                                                        <label for="registro_email" class="mb-2">Correo</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-text custom_blue_background">
+                                                                <i class="bi bi-envelope-fill"></i>
+                                                            </span>
+                                                            <input type="email" value="" id="registro_email" name="registro_email" class="form-control" placeholder="Correo" />
+
+                                                        </div>
+                                                        <div class="text-center">
+                                                            <span id="email_registro_error" class="text-danger"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group my-3">
+                                                        <label for="registro_password" class="mb-2">Contraseña</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-text custom_blue_background">
+                                                                <i class="bi bi-unlock-fill"></i>
+                                                            </span>
+                                                            <input type="password" value="" title="De 6 a 8 caracteres,solo numeros o letras, sin caracteres especiales" id="registro_password" name="registro_password" class="form-control" placeholder="Contraseña" />
+                                                            <span id="ver_password" class="input-group-text password-see">
+                                                                <i class="bi bi-eye bi-xs"></i>
+                                                            </span>
+
+
+
+                                                        </div>
+                                                        <div class="text-center">
+                                                            <span id="pass_registro_error" class="text-danger"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group text-center">
+
+                                                        <span id="registro_error" class="text-danger">
+                                                        </span>
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item text-center">
+                                                    <button id="registrarse" type="button" class="btn btn-secondary boton">Registrarse</button>
+                                                    <a id="confirmacion" data-bs-toggle="modal" data-bs-dismiss="modal" href="#myModal2" class="d-none"></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Footer de la modal y login con redes sociales-->
+                    <div class="modal-footer d-flex flex-column text-center">
+                        <div> <span>O inicia sesión con:</span> </div>
+                        <div class="container-fluid d-flex justify-content-evenly mb-4">
+                            <!--<a href="http://118.98.229.51/auth/redirect/google"><img src="assets/svg/google.svg" /> </a>-->
+                            <a href="#"><img src="assets/svg/google.svg" /> </a>
+                            <a href="#"><img src="assets/svg/facebook.svg" /> </a>
+                            <a href="#"><img src="assets/svg/twitter.svg" /> </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal de registro exitoso -->
+        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="alert">
+                <div class="modal-content">
+                    <div id="modal_exito_header" class="modal-header text-center bg-dark">
+                        <h4 class="modal-title w-100 font-weight-bold text-white titulo">GAMEBLOG</h4>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"> </button>
+                    </div>
+                    <div class="container text-center"></div>
+                    <div id="modal_exito_body" class="d-flex p-3 justify-content-center">Registro completado con éxito</div>
+                    <div id="modal_exito_footer" class="modal-footer text-center justify-content-center">
+                        <a href="#" data-bs-dismiss="modal" class="btn btn-secondary">Aceptar</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+</body>
+
+</html>
